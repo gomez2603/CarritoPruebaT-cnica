@@ -22,6 +22,14 @@ namespace ShopDomain
         public DbSet<Tiendas> tiendas { get; set; }
         public DbSet<ArtTienda> artTiendas { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Clientes>()
+              .HasIndex(u => u.Username)
+              .IsUnique();
+            modelBuilder.ApplyConfiguration(new ClientSeed());
+
+        }
 
     }
 }

@@ -4,8 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ShopDomain;
+using ShopDomain.Dtos;
 using ShopRepository;
 using ShopRepository.Implementation;
+using ShopService;
+using ShopService.Implentation;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
@@ -17,7 +20,15 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//IOD
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IArticuloService,ArticuloService>();
+builder.Services.AddScoped<IArtTiendaService,ArtTiendaService>();
+builder.Services.AddScoped<IClienteService, ClientesService>();
+builder.Services.AddScoped<ISalesService, SalesService>();
+builder.Services.AddScoped<ITiendaService,TiendaService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 //DB
 builder.Services.AddDbContext<ShopContext>(options =>
  options.UseSqlServer(builder.Configuration.GetConnectionString("db")));

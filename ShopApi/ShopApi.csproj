@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ShopDomain\ShopDomain.csproj" />
     <ProjectReference Include="..\ShopRepository\ShopRepository.csproj" />
+    <ProjectReference Include="..\ShopService\ShopService.csproj" />
   </ItemGroup>
 
 </Project>
