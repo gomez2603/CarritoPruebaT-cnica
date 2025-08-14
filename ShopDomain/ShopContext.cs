@@ -20,6 +20,7 @@ namespace ShopDomain
         public DbSet<Clientes> clientes { get; set; }
         public DbSet<Sales> sales { get; set; }
         public DbSet<Tiendas> tiendas { get; set; }
+        public DbSet<ArtTienda> artTiendas { get; set; }
 
 
     }

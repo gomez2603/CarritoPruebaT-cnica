@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36401.2 d17.14
+VisualStudioVersion = 17.14.36401.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopApi", "ShopApi\ShopApi.csproj", "{0F0DBF3D-02D5-4B45-ADC2-C06870BEE44A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5BF9E8CD-A6A9-4E5E-9D96-6438EFD6D95D} = {5BF9E8CD-A6A9-4E5E-9D96-6438EFD6D95D}
+		{6CC363E3-26C9-41C5-B4E0-6469F5BC888D} = {6CC363E3-26C9-41C5-B4E0-6469F5BC888D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopDomain", "ShopDomain\ShopDomain.csproj", "{95FA1413-3312-4A81-92FD-8B3AF634882F}"
 EndProject

@@ -16,5 +16,6 @@ namespace ShopDomain.Entities
         [ForeignKey("ArticuloId")]
         public int ArticuloId { get; set; }
         public virtual Articulo Articulo { get; set; }
+        public DateTime? Fecha { get; set; } = DateTime.Now;
     }
 }
