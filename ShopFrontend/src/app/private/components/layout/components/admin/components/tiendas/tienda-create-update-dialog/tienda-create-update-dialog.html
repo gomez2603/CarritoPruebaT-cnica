@@ -1,0 +1,27 @@
+
+  @if(addTienda.value.id ==0){
+    <h1>Agregar Tienda</h1>
+  }
+  @else {
+    <h1>Actulizar Tienda</h1>
+  }
+
+    <mat-dialog-content>
+    <form [formGroup]="addTienda">
+        <mat-form-field class="loginForm">
+            <mat-label>Sucursal</mat-label>
+            <input matInput type="text" formControlName="branch">
+        </mat-form-field>
+
+        <mat-form-field class="loginForm">
+            <mat-label>Dirección</mat-label>
+            <input matInput type="text" formControlName="address">
+        </mat-form-field>
+        </form>
+<mat-dialog-actions align="end">
+  <button matButton (click)="onNoClick()">No Thanks</button>
+  <button matButton (click)="CreateTienda()" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
+       
+    
+</mat-dialog-content>

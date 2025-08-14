@@ -69,6 +69,15 @@ var cloudinary = new Cloudinary(new Account(
 
 builder.Services.AddSingleton(cloudinary);
 
+string policy = "MyPolicy";
+var allowedOrigins = new[] { "http://localhost", "http://localhost:80", "http://localhost:4200", "http://localhost:4201" };
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: policy, builder =>
+        builder.WithOrigins(allowedOrigins) // Agrega los orígenes permitidos
+               .AllowAnyHeader()
+               .AllowAnyMethod());
+});
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -89,5 +98,6 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseCors(policy);
 
 app.Run();

@@ -1,0 +1,24 @@
+.example-card {
+  max-width: 300px;
+
+}
+.example-header-image {
+  background-image: url('/logo.svg');
+  background-size: cover;
+  fill: red;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+}
+
+
+.loginForm{
+    width: 100%;
+    padding: 1px 15px;
+    box-sizing: border-box;
+}

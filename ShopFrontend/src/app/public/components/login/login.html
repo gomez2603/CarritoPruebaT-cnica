@@ -1,0 +1,26 @@
+
+<div class="container">
+    <mat-card class="example-card" appearance="outlined">
+
+         <mat-card-header>
+    <div mat-card-avatar class="example-header-image">
+    </div>
+    <mat-card-title>La casa de Toby</mat-card-title>
+    <mat-card-subtitle>Bienvenido</mat-card-subtitle>
+  </mat-card-header>
+        <form [formGroup]="login"(ngSubmit)="OnSubmit()" >
+            <mat-form-field class="loginForm">
+                <mat-label>Usuario</mat-label>
+                <input matInput type="text" formControlName="username"  >
+            </mat-form-field>
+
+            <mat-form-field class="loginForm">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" formControlName="password" >
+            </mat-form-field>
+
+             <button type="submit" matButton="elevated" style="width: 100%; border: solid 1px; padding: 10px;">Ingresar</button>
+        </form>
+       
+    </mat-card>
+</div>

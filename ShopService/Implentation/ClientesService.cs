@@ -46,16 +46,19 @@ namespace ShopService.Implentation
         public void Remove(int id)
         {
             _unitOfWork.ClientRepository.Remove(id);
+            _unitOfWork.Save();
         }
 
         public void Remove(Clientes entidad)
         {
             _unitOfWork.ClientRepository.Remove(entidad);
+            _unitOfWork.Save();
         }
 
         public void RemoveRange(IEnumerable<Clientes> entidad)
         {
             _unitOfWork.ClientRepository.RemoveRange(entidad);
+            _unitOfWork.Save();
         }
     }
 }

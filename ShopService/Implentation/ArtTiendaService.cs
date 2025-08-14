@@ -45,16 +45,19 @@ namespace ShopService.Implentation
         public void Remove(int id)
         {
             _unitOfWork.ArttiendaRepository.Remove(id);
+            _unitOfWork.Save();
         }
 
         public void Remove(ArtTienda entidad)
         {
             _unitOfWork.ArttiendaRepository.Remove(entidad);
+            _unitOfWork.Save();
         }
 
         public void RemoveRange(IEnumerable<ArtTienda> entidad)
         {
             _unitOfWork.ArttiendaRepository.RemoveRange(entidad);
+            _unitOfWork.Save();
         }
     }
 }
