@@ -1,4 +1,5 @@
-﻿using ShopDomain.Entities;
+﻿using ShopDomain.Dtos;
+using ShopDomain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace ShopRepository
     public interface ISalesRepository :IBaseRepository<Sales>
     {
         void Update(Sales sales);
+        List<SalesDto> GetSalesByClient(int clientId);
     }
 }

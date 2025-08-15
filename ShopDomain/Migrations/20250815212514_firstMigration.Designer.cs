@@ -12,8 +12,8 @@ using ShopDomain;
 namespace ShopDomain.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20250814172324_se agrega Fecha a Sales")]
-    partial class seagregaFechaaSales
+    [Migration("20250815212514_firstMigration")]
+    partial class firstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,7 +46,8 @@ namespace ShopDomain.Migrations
 
                     b.HasIndex("ArticuloId");
 
-                    b.HasIndex("StoreId");
+                    b.HasIndex("StoreId", "ArticuloId")
+                        .IsUnique();
 
                     b.ToTable("artTiendas");
                 });
@@ -68,12 +69,10 @@ namespace ShopDomain.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
@@ -119,11 +118,27 @@ namespace ShopDomain.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Username")
+                        .IsUnique();
+
                     b.ToTable("clientes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Av Candiles 315 169",
+                            LastName = "Admin",
+                            Name = "Super",
+                            PasswordHash = new byte[] { 169, 223, 84, 87, 194, 84, 41, 250, 121, 102, 171, 14, 77, 9, 223, 15, 174, 212, 80, 71, 12, 61, 203, 85, 231, 167, 185, 207, 2, 113, 147, 180, 255, 238, 61, 111, 11, 74, 139, 133, 43, 241, 7, 249, 182, 131, 196, 96, 5, 78, 37, 90, 73, 160, 114, 188, 97, 8, 206, 226, 152, 98, 34, 65 },
+                            PasswordSalt = new byte[] { 252, 60, 212, 136, 103, 33, 226, 206, 166, 38, 227, 217, 254, 211, 195, 70, 101, 87, 20, 11, 3, 244, 1, 210, 170, 29, 223, 109, 139, 169, 90, 165, 127, 72, 98, 128, 24, 60, 171, 184, 214, 234, 211, 61, 86, 103, 242, 100, 167, 18, 119, 86, 181, 70, 141, 60, 235, 255, 144, 153, 211, 254, 185, 244, 55, 156, 138, 77, 37, 132, 173, 92, 129, 186, 185, 25, 70, 72, 219, 27, 238, 180, 225, 106, 87, 115, 32, 160, 247, 134, 131, 164, 171, 151, 190, 12, 175, 204, 122, 121, 32, 33, 121, 133, 238, 133, 152, 133, 120, 193, 239, 112, 194, 152, 196, 214, 206, 172, 225, 165, 7, 104, 26, 17, 209, 201, 212, 33 },
+                            Rol = 0,
+                            Username = "admin"
+                        });
                 });
 
             modelBuilder.Entity("ShopDomain.Entities.Sales", b =>
@@ -143,14 +158,11 @@ namespace ShopDomain.Migrations
                     b.Property<DateTime?>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("clienteId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ArticuloId");
 
-                    b.HasIndex("clienteId");
+                    b.HasIndex("ClientId");
 
                     b.ToTable("sales");
                 });
@@ -181,13 +193,13 @@ namespace ShopDomain.Migrations
             modelBuilder.Entity("ShopDomain.Entities.ArtTienda", b =>
                 {
                     b.HasOne("ShopDomain.Entities.Articulo", "Articulo")
-                        .WithMany()
+                        .WithMany("ArtTienda")
                         .HasForeignKey("ArticuloId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ShopDomain.Entities.Tiendas", "Tiendas")
-                        .WithMany()
+                        .WithMany("ArtTienda")
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -200,20 +212,37 @@ namespace ShopDomain.Migrations
             modelBuilder.Entity("ShopDomain.Entities.Sales", b =>
                 {
                     b.HasOne("ShopDomain.Entities.Articulo", "Articulo")
-                        .WithMany()
+                        .WithMany("Sales")
                         .HasForeignKey("ArticuloId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShopDomain.Entities.Clientes", "cliente")
-                        .WithMany()
-                        .HasForeignKey("clienteId")
+                    b.HasOne("ShopDomain.Entities.Clientes", "Cliente")
+                        .WithMany("Sales")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Articulo");
 
-                    b.Navigation("cliente");
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("ShopDomain.Entities.Articulo", b =>
+                {
+                    b.Navigation("ArtTienda");
+
+                    b.Navigation("Sales");
+                });
+
+            modelBuilder.Entity("ShopDomain.Entities.Clientes", b =>
+                {
+                    b.Navigation("Sales");
+                });
+
+            modelBuilder.Entity("ShopDomain.Entities.Tiendas", b =>
+                {
+                    b.Navigation("ArtTienda");
                 });
 #pragma warning restore 612, 618
         }

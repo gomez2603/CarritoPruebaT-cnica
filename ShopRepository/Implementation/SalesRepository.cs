@@ -1,4 +1,6 @@
-﻿using ShopDomain;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopDomain;
+using ShopDomain.Dtos;
 using ShopDomain.Entities;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,23 @@ namespace ShopRepository.Implementation
             entity.ArticuloId = sales.ArticuloId;
             entity.Fecha = DateTime.Now;
             }
+        }
+
+        public List<SalesDto> GetSalesByClient(int clientId)
+        {
+            return _context.sales
+                .Where(s => s.ClientId == clientId)
+                .Select(s => new SalesDto
+                {
+                    SaleId = s.Id,
+                    ArticuloId = s.ArticuloId,
+                    Code = s.Articulo.Code,
+                    Description = s.Articulo.Description,
+                    Price = s.Articulo.Price,
+                    Image = s.Articulo.Image,
+                    Fecha = s.Fecha
+                })
+                .ToList();
         }
     }
 }

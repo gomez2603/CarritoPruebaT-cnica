@@ -8,7 +8,7 @@ import { articuloClass } from '../admin/components/articulos/articulosClass';
 })
 export class ShopService {
     private readonly _http = inject(HttpClient);
-  private readonly _apiUrl = `${environment.apiUrl}/Articulo`;
+   private readonly _apiUrl = `${environment.apiUrl}/Tiendas`;
 
   state = signal({
     articulos: new Map<number, articuloClass>()
@@ -22,11 +22,12 @@ export class ShopService {
   }
 
 
-getTArticulosByTienda(id:number):void {
-      this._http.get<articuloClass[]>(`http://localhost:4201/api/Tiendas/articulos/${id}`).subscribe((result) => {
-        result.forEach((tienda) =>
-          this.state().articulos.set(tienda.id, tienda));
-        this.state.set({ articulos: this.state().articulos })
-      });
-    }
+getTArticulosByTienda(id: number): void {
+  this._http.get<articuloClass[]>(`${this._apiUrl}/articulos/${id}`)
+    .subscribe((result) => {
+      const nuevosArticulos = new Map<number, articuloClass>();
+      result.forEach((articulo) => nuevosArticulos.set(articulo.id, articulo));
+      this.state.set({ articulos: nuevosArticulos });
+    });
+}
 }

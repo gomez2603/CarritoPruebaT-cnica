@@ -1,0 +1,42 @@
+@let local = cartItems();
+<h2 mat-dialog-title style="text-align: center;">Carrito de Compras</h2>
+
+<mat-dialog-content>
+    <table mat-table [dataSource]="local" class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef> Codigo </th>
+            <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Precio </th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element"> <img style="padding-top: 10px;" src="{{element.image}}"
+                    width="100px" alt="{{element.description}}"> </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button matButton (click)="onNoClick()">Cancelar</button>
+    <button matButton (click)="vaciarCarrito()" color="danger" >Vaciar Carrito</button>
+    <button matButton  color="primary" (click)="Comprar()" [disabled]="cartCount()===0" cdkFocusInitial>Comprar</button>
+</mat-dialog-actions>

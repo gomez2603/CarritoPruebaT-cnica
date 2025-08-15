@@ -19,7 +19,7 @@ namespace ShopApi.Controllers
 
         }
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,CLIENT")]
         public IActionResult GetAll()
         {
             return Ok(_service.GetAll());

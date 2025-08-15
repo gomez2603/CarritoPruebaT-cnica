@@ -1,4 +1,5 @@
-﻿using ShopDomain.Entities;
+﻿using ShopDomain.Dtos;
+using ShopDomain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace ShopService
              Expression<Func<Sales, bool>> filter = null,
              string incluirPropiedades = ""
              );
-
+        List<SalesDto> GetSalesByClient(int clientId);
         void Add(Sales entidad);
         
         void Update(Sales entidad);

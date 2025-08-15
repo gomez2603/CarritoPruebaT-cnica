@@ -34,9 +34,7 @@ namespace ShopDomain
               .HasIndex(s => new { s.StoreId, s.ArticuloId })
               .IsUnique();
 
-            modelBuilder.Entity<Sales>()
-              .HasIndex(s => new { s.ClientId, s.ArticuloId })
-              .IsUnique();
+     
 
            
             modelBuilder.Entity<ArtTienda>()
@@ -61,9 +59,7 @@ namespace ShopDomain
                 .HasForeignKey(s => s.ArticuloId);
 
     
-            modelBuilder.Entity<Sales>()
-                .HasIndex(s => new { s.ClientId, s.ArticuloId })
-                .IsUnique();
+         
 
 
         }

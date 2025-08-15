@@ -7,7 +7,7 @@
             <li *appShowForRoles="['ADMIN','CLIENT']"><a routerLink="" routerLinkActive="active">
                     <div class="sidenav">
                         <mat-icon>point_of_sale</mat-icon>
-                        <p>Ventas</p>
+                        <p>Tienda</p>
                     </div>
                 </a></li>
             <li *appShowForRoles="['ADMIN']"><a routerLink="admin" routerLinkActive="active">
@@ -16,7 +16,12 @@
                         <p>Administración</p>
                     </div>
                 </a></li>
-
+            <li *appShowForRoles="['ADMIN','CLIENT']"><a routerLink="compras" routerLinkActive="active">
+                    <div class="sidenav">
+                        <mat-icon>shopping_cart</mat-icon>
+                        <p>Mis Compras</p>
+                    </div>
+                </a></li>
 
         </ul>
     </mat-drawer>

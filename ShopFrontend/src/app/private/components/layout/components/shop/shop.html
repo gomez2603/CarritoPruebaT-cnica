@@ -1,6 +1,9 @@
 @let local =articulosState();
 @let tiendas = tiendasState();
-<mat-form-field>
+<div style="display:flex; justify-content: center; min-width: 50vw;">
+
+
+<mat-form-field style="width:60%; margin:10px">
   <mat-label>Sucursal</mat-label>
   <mat-select (selectionChange)="onStoreChange($event)" >
     @for (tienda of tiendas; track tienda.id) {
@@ -9,6 +12,10 @@
   </mat-select>
 </mat-form-field>
 
+  <button matMiniFab style="min-height: 60px; margin: 10px;" (click)="openDialog()" [matBadge]="cartCount()" matBadgePosition="after">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      </div>
 <div class="stockContainer">
     
 @for (item of local; track item.id) {
@@ -28,7 +35,7 @@
     </mat-card-content>
 
     <mat-card-footer>
-      <button mat-mini-fab class="add-to-cart-btn">
+      <button mat-mini-fab class="add-to-cart-btn" (click)="addToCart(item)">
         Añadir al carrito
       </button>
     </mat-card-footer>
