@@ -1,0 +1,27 @@
+
+  @if(addArtTienda.value.id ==0){
+    <h1>Agregar Inventario</h1>
+  }
+  @else {
+    <h1>Actulizar Inventario</h1>
+  }
+
+    <mat-dialog-content>
+    <form [formGroup]="addArtTienda">
+        <mat-form-field class="loginForm">
+            <mat-label>Sucursal</mat-label>
+            <input matInput type="text" formControlName="storeId">
+        </mat-form-field>
+
+        <mat-form-field class="loginForm">
+            <mat-label>Articulo</mat-label>
+            <input matInput type="text" formControlName="articuloId">
+        </mat-form-field>
+        </form>
+<mat-dialog-actions align="end">
+  <button matButton (click)="onNoClick()">No Thanks</button>
+  <button matButton (click)="CreateArtTienda()" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
+       
+    
+</mat-dialog-content>

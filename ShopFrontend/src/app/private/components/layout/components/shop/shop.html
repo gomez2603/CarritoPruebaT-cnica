@@ -1,1 +1,29 @@
-<p>shop works!</p>
+@let local =articulosState();
+
+<div class="stockContainer">
+    
+@for (item of local; track item.id) {
+
+<mat-card class="example-card" appearance="outlined">
+    <mat-card-header>
+      <img mat-card-image src="{{item.image}}"  alt="Photo of a Shiba Inu">
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-card-title>{{item.code}}</mat-card-title>
+      <p class="product-description">
+        {{item.description}}
+      </p>
+
+      <p class="product-price">{{item.price |currency:'MXN':'symbol':'1.2-2' }}</p>
+    </mat-card-content>
+
+    <mat-card-footer>
+      <button mat-mini-fab class="add-to-cart-btn">
+        Añadir al carrito
+      </button>
+    </mat-card-footer>
+  </mat-card>
+}
+  
+</div>
