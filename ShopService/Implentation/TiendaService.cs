@@ -1,4 +1,5 @@
-﻿using ShopDomain.Entities;
+﻿using ShopDomain.Dtos;
+using ShopDomain.Entities;
 using ShopRepository;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,11 @@ namespace ShopService.Implentation
         {
             _unitOfWork.TiendaRepository.RemoveRange(entidad);
             _unitOfWork.Save();
+        }
+
+        public List<ArticuloDto> GetArticulosPorTienda(int id)
+        {
+            return _unitOfWork.TiendaRepository.GetArticulosPorTienda(id);
         }
     }
 }

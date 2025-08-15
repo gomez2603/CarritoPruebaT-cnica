@@ -19,7 +19,7 @@ export class Articulos {
   displayedColumns: string[] = ['id', 'code', 'description','price','stock','image','actions'];
 
     articulosState: Signal<articuloClass[]> = computed(() =>
-    this.articuloService.getFormattedTiendas()
+    this.articuloService.getFormattedArticulos()
   );
 
     openDialog(articulo?: articuloClass): void {
@@ -33,10 +33,10 @@ export class Articulos {
           // Aquí puedes manejar el resultado (guardar o actualizar la tienda)}
             const id = Number(result.get('id'));
           if(id !=0){
-            this.articuloService.updateTienda(result)
+            this.articuloService.updateArticulos(result)
           }
           else{
-            this.articuloService.postTienda(result)
+            this.articuloService.postArticulos(result)
           }
         }
       });
@@ -44,7 +44,7 @@ export class Articulos {
   
     deleteTienda(id: number) {
       if (confirm('¿Estás seguro de eliminar?')) {
-        this.articuloService.deleteTienda(id);
+        this.articuloService.deleteArticulos(id);
 
       }
     }

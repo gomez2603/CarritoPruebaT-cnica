@@ -1,4 +1,5 @@
-
+@let tiendas = tiendasState();
+@let articulos = articulosState(); 
   @if(addArtTienda.value.id ==0){
     <h1>Agregar Inventario</h1>
   }
@@ -8,15 +9,23 @@
 
     <mat-dialog-content>
     <form [formGroup]="addArtTienda">
-        <mat-form-field class="loginForm">
-            <mat-label>Sucursal</mat-label>
-            <input matInput type="text" formControlName="storeId">
-        </mat-form-field>
-
-        <mat-form-field class="loginForm">
-            <mat-label>Articulo</mat-label>
-            <input matInput type="text" formControlName="articuloId">
-        </mat-form-field>
+      
+<mat-form-field>
+  <mat-label>Sucursal</mat-label>
+  <mat-select  formControlName="storeId">
+    @for (tienda of tiendas; track tienda.id) {
+      <mat-option [value]="tienda.id">{{tienda.branch}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+   <mat-form-field>
+  <mat-label>Articulos</mat-label>
+  <mat-select  formControlName="articuloId">
+    @for (articulo of articulos; track articulo.id) {
+      <mat-option [value]="articulo.id">{{articulo.code}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
         </form>
 <mat-dialog-actions align="end">
   <button matButton (click)="onNoClick()">No Thanks</button>

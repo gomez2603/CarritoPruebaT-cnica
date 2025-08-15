@@ -28,6 +28,8 @@ namespace ShopDomain.Entities
         public string Username { get; set; }
         public ERol Rol { get; set; } = ERol.CLIENT;
 
+          public virtual ICollection<Sales>? Sales { get; set; }
+
 
     }
 }

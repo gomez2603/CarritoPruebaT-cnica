@@ -1,4 +1,5 @@
 ﻿using ShopDomain;
+using ShopDomain.Dtos;
 using ShopDomain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,20 @@ namespace ShopRepository.Implementation
             _context = context;
         }
 
+        public List<ArticuloDto> GetArticulosPorTienda(int storeId)
+        {
+            return _context.artTiendas
+        .Where(at => at.StoreId == storeId)
+        .Select(at => new ArticuloDto
+        {
+            Id = at.Articulo.Id,
+            Code = at.Articulo.Code,
+            Description = at.Articulo.Description,
+            Price = at.Articulo.Price,
+            Image = at.Articulo.Image   
+        })
+        .ToList();
+        }
 
         public void Update(Tiendas tienda)
         {

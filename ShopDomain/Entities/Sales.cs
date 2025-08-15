@@ -12,10 +12,11 @@ namespace ShopDomain.Entities
         public int Id { get; set; }
         [ForeignKey("ClientId")]
         public int ClientId  { get; set; }  
-        public virtual Clientes cliente { get; set; }
+        public virtual Clientes Cliente { get; set; }
         [ForeignKey("ArticuloId")]
         public int ArticuloId { get; set; }
         public virtual Articulo Articulo { get; set; }
         public DateTime? Fecha { get; set; } = DateTime.Now;
+        
     }
 }

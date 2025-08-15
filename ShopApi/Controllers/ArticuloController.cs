@@ -13,7 +13,7 @@ namespace ShopApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
+  
     public class ArticuloController : ControllerBase
     {
 
@@ -27,17 +27,20 @@ namespace ShopApi.Controllers
             _cloudinary = cloudinary;
         }
         [HttpGet]
+        [Authorize(Roles = "CLIENT,ADMIN")]
         public IActionResult GetAll()
         {
             return Ok(_service.GetAll());
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "CLIENT,ADMIN")]
         public IActionResult Get(int id)
         {
             return Ok(_service.Get(id));
         }
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Post(CreateUpdateArticulo articulo)
         {
             try
@@ -67,6 +70,7 @@ namespace ShopApi.Controllers
 
         }
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Put(CreateUpdateArticulo articulo)
         {
             try
@@ -95,6 +99,7 @@ namespace ShopApi.Controllers
 
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Delete(int id)
         {
             try

@@ -8,7 +8,7 @@ namespace ShopApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ADMIN,CLIENT")]
+    
     public class SalesController : ControllerBase
     {
         private readonly ISalesService _service;
@@ -19,17 +19,20 @@ namespace ShopApi.Controllers
 
         }
         [HttpGet]
+        [Authorize(Roles = "ADMIN,CLIENT")]
         public IActionResult GetAll()
         {
             return Ok(_service.GetAll());
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "ADMIN,CLIENT")]
         public IActionResult Get(int id)
         {
             return Ok(_service.Get(id));
         }
         [HttpPost]
+        [Authorize(Roles = "ADMIN,CLIENT")]
         public IActionResult Post(Sales articulo)
         {
             try
@@ -48,6 +51,7 @@ namespace ShopApi.Controllers
 
 
         [HttpPost("Multiple")]
+        [Authorize(Roles = "ADMIN,CLIENT")]
         public  IActionResult PostMultiple(IEnumerable<Sales> articulo)
         {
             try
@@ -67,6 +71,7 @@ namespace ShopApi.Controllers
 
         }
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Put(Sales articulo)
         {
             try
@@ -83,6 +88,7 @@ namespace ShopApi.Controllers
 
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Delete(int id)
         {
             try

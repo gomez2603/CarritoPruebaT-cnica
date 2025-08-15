@@ -17,5 +17,6 @@ namespace ShopDomain.Entities
         [Required]
         [MaxLength(50)]
         public string Address { get; set; }
+        public virtual ICollection<ArtTienda>? ArtTienda { get; set; }
     }
 }

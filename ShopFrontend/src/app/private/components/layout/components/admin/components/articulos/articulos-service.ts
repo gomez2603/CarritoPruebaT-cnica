@@ -15,13 +15,13 @@ export class ArticulosService {
     articulos: new Map<number, articuloClass>()
   })
   constructor(){
-    this.getTiendas()
+    this.getTArticulos()
   }
 
-  getFormattedTiendas() {
+  getFormattedArticulos() {
     return Array.from(this.state().articulos.values())
   }
-  getTiendas():void {
+  getTArticulos():void {
     this._http.get<articuloClass[]>(this._apiUrl).subscribe((result) => {
       result.forEach((tienda) =>
         this.state().articulos.set(tienda.id, tienda));
@@ -29,25 +29,27 @@ export class ArticulosService {
     });
 
   }
+
+
  
   // POST: Crear proveedor y refrescar lista
-  postTienda(dto: FormData): Observable<articuloClass> {
+  postArticulos(dto: FormData): Observable<articuloClass> {
     const request = this._http.post<articuloClass>(this._apiUrl, dto);
-    request.subscribe(() => this.getTiendas());
+    request.subscribe(() => this.getTArticulos());
     return request;
   }
 
   // PUT: Actualizar proveedor y refrescar lista
-  updateTienda(dto: FormData): Observable<articuloClass> {
+  updateArticulos(dto: FormData): Observable<articuloClass> {
     const request = this._http.put<articuloClass>(`${this._apiUrl}`, dto);
-    request.subscribe(() => this.getTiendas());
+    request.subscribe(() => this.getTArticulos());
     return request;
   }
 
 
-  deleteTienda(id: number): Observable<void> {
+  deleteArticulos(id: number): Observable<void> {
     const request = this._http.delete<void>(`${this._apiUrl}/${id}`);
-    request.subscribe(() => this.getTiendas());
+    request.subscribe(() => this.getTArticulos());
     return request;
   }
 

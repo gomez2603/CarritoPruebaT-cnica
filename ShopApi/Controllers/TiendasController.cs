@@ -8,7 +8,7 @@ namespace ShopApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
+    
     public class TiendasController : ControllerBase
     {
         private readonly ITiendaService _service;
@@ -19,17 +19,27 @@ namespace ShopApi.Controllers
 
         }
         [HttpGet]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult GetAll()
         {
             return Ok(_service.GetAll());
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Get(int id)
         {
             return Ok(_service.Get(id));
         }
+
+        [HttpGet("articulos/{id}")]
+        [Authorize(Roles = "ADMIN,CLIENT")]
+        public IActionResult GetArticulos(int id)
+        {
+            return Ok(_service.GetArticulosPorTienda(id));
+        }
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Post(Tiendas articulo)
         {
             try
@@ -46,6 +56,7 @@ namespace ShopApi.Controllers
 
         }
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Put(Tiendas articulo)
         {
             try
@@ -62,6 +73,7 @@ namespace ShopApi.Controllers
 
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Delete(int id)
         {
             try

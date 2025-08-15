@@ -15,6 +15,9 @@ namespace ShopDomain.Entities
         public string Description { get; set; }
         public double Price { get; set; }
         public string? Image { get; set; } = null;
-        public int Stock { get; set; }  
+        public int Stock { get; set; }
+        public virtual ICollection<ArtTienda>? ArtTienda { get; set; }
+        public virtual ICollection<Sales>? Sales { get; set; }
+
     }
 }

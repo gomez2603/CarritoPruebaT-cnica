@@ -1,4 +1,13 @@
 @let local =articulosState();
+@let tiendas = tiendasState();
+<mat-form-field>
+  <mat-label>Sucursal</mat-label>
+  <mat-select (selectionChange)="onStoreChange($event)" >
+    @for (tienda of tiendas; track tienda.id) {
+      <mat-option [value]="tienda.id">{{tienda.branch}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
 
 <div class="stockContainer">
     
@@ -24,6 +33,9 @@
       </button>
     </mat-card-footer>
   </mat-card>
+}
+@empty {
+  <h2>Por el momento la tienda no tiene productos</h2>
 }
   
 </div>
