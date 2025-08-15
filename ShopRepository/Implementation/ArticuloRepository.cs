@@ -26,7 +26,7 @@ namespace ShopRepository.Implementation
                 entity.Code = articulo.Code;
                 entity.Description = articulo.Description;
                 entity.Price = articulo.Price;
-                if(entity.Image != null)
+                if(articulo.Image != null)
                 {
                     entity.Image = articulo.Image;
                 } 

@@ -43,6 +43,13 @@ namespace ShopApi.Controllers
             return BadRequest("Usuario o Contraseña Incorrecta");
 
         }
+        [HttpGet]
+        [Authorize(Roles = "ADMIN")]
+        public IActionResult GetAll()
+        {
+            var map = _mapper.Map<IEnumerable<userResponseDto>>(_clienteService.GetAll().ToList());
+            return Ok(map);
+        }
 
 
         [HttpPost("Register")]

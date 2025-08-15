@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ShopDomain.Entities;
 using ShopService;
@@ -7,6 +8,7 @@ namespace ShopApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "ADMIN,CLIENT")]
     public class SalesController : ControllerBase
     {
         private readonly ISalesService _service;

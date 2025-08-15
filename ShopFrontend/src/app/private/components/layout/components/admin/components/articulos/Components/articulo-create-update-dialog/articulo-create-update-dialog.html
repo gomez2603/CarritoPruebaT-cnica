@@ -1,0 +1,50 @@
+
+  @if(addArticulo.value.id ==0){
+    <h1>Agregar Articulo</h1>
+  }
+  @else {
+    <h1>Actulizar Articulo</h1>
+  }
+
+      <mat-dialog-content>
+   <form [formGroup]="addArticulo"  class="p-4 flex flex-col gap-4">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Codigo</mat-label>
+    <input matInput formControlName="code" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Descripción</mat-label>
+    <input matInput formControlName="description" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Precio</mat-label>
+    <input matInput type="number" formControlName="price" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Stock</mat-label>
+    <input matInput type="number" formControlName="stock" />
+  </mat-form-field>
+  <!-- Selector de archivo -->
+  <div>
+    <input type="file" (change)="onFileChange($event)" accept="image/*" />
+  </div>
+
+  @if (imagePreview()) {
+    <div class="mt-2">
+      <img [src]="imagePreview()" alt="Vista previa" style="max-width: 150px; border-radius: 8px;" />
+    </div>
+  }
+   
+
+   </form>
+<mat-dialog-actions align="end">
+  <button matButton (click)="onNoClick()">No Thanks</button>
+  <button matButton (click)="CreateArticulo()" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
+       
+    
+</mat-dialog-content>

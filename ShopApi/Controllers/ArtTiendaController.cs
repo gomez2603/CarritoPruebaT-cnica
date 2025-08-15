@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ShopDomain.Dtos;
 using ShopDomain.Entities;
 using ShopService;
 
@@ -10,20 +12,24 @@ namespace ShopApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "ADMIN")]
     public class ArtTiendaController : ControllerBase
     {
 
         private readonly IArtTiendaService _service;
- 
-        public ArtTiendaController(IArtTiendaService service)
+        private readonly IMapper _mapper;
+        public ArtTiendaController(IArtTiendaService service,IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         
         }
         [HttpGet]
         public IActionResult GetAll()
+            
         {
-            return Ok(_service.GetAll());
+            var map = _mapper.Map<IEnumerable<ArtTIendaResponse>>(_service.GetAll(incluirPropiedades: "Tiendas,Articulo"));
+            return Ok(map);
         }
 
         [HttpGet("{id}")]

@@ -13,10 +13,10 @@ namespace ShopDomain.Entities
         public int Id { get; set; } 
         public int StoreId { get; set; }
         [ForeignKey("StoreId")]
-        public Tiendas Tiendas { get; set; }
+        public virtual Tiendas? Tiendas { get; set; }
         [ForeignKey("ArticuloId")]
         public int ArticuloId { get; set; }
-        public Articulo Articulo { get; set; }
+        public virtual Articulo? Articulo { get; set; }
         public DateTime Fecha { get; set; }  = DateTime.Now;
     }
 }

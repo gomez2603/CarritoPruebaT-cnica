@@ -11,7 +11,7 @@ namespace ShopDomain.Dtos
             CreateMap<Clientes, userResponseDto>();
             CreateMap<Clientes,LoginResponseDto>();
             CreateMap<RegisterDto, Clientes>();
-
+            CreateMap<ArtTienda,ArtTIendaResponse>();
         }
     }
 }

@@ -50,6 +50,7 @@ export class Tiendas {
   deleteTienda(id: number) {
     if (confirm('¿Estás seguro de eliminar?')) {
       this.tiendaService.deleteTienda(id);
+      this.tiendaService.getTiendas()
     }
   }
   

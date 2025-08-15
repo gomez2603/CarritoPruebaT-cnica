@@ -14,13 +14,13 @@ namespace ShopApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = "ADMIN")]
-    public class ArtiucloController : ControllerBase
+    public class ArticuloController : ControllerBase
     {
 
         private readonly IArticuloService _service;
         private readonly IMapper _mapper;
         private readonly Cloudinary _cloudinary;
-        public ArtiucloController(IArticuloService service, Cloudinary cloudinary,IMapper mapper)
+        public ArticuloController(IArticuloService service, Cloudinary cloudinary,IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
